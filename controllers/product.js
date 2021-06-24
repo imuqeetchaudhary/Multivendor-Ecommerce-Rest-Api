@@ -9,8 +9,15 @@ exports.getProduct = promise(async (req, res) => {
     res.status(200).json({ product })
 })
 
-exports.getAllProduct = promise(async (req, res) => {
+exports.getAllProductForAdmin = promise(async (req, res) => {
     const product = await Product.find()
+    if (!product) throw new Exceptions.NotFound
+
+    res.status(200).json({ product })
+})
+
+exports.getAllProductForUser = promise(async (req, res) => {
+    const product = await Product.find({userId: req.user._id})
     if (!product) throw new Exceptions.NotFound
 
     res.status(200).json({ product })
