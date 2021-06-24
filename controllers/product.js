@@ -3,6 +3,13 @@ const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
 
 exports.getProduct = promise(async (req, res) => {
+    const product = await Product.findOne({_id: req.body.productId})
+    if (!product) throw new Exceptions.NotFound
+
+    res.status(200).json({ product })
+})
+
+exports.getAllProduct = promise(async (req, res) => {
     const product = await Product.find()
     if (!product) throw new Exceptions.NotFound
 

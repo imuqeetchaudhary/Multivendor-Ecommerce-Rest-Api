@@ -10,3 +10,7 @@ exports.addProductSchema = yup.object({
     isAvailable: yup.boolean().required(),
     availableDate: yup.date().required(),
 })
+
+exports.getProductSchema = yup.object({
+    productId: yup.string().required(),
+})

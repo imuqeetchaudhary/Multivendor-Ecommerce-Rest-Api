@@ -3,7 +3,7 @@ const router = express.Router()
 const product = require("../controllers/product")
 const { authentication } = require("../middlewares/isAuth")
 const { validation } = require("../middlewares/validation")
-const { addProductSchema } = require("../validation/product")
+const { addProductSchema, getProductSchema } = require("../validation/product")
 
 const multer = require("multer")
 const path = require("path")
@@ -26,7 +26,8 @@ const upload = multer({
     }
 })
 
-router.post("/get", authentication, product.getProduct)
+router.post("/get", authentication, validation(getProductSchema), product.getProduct)
+router.post("/get-all", authentication, product.getAllProduct)
 router.post("/add", authentication, upload.single("image"), product.addProduct)
 
 module.exports = router
