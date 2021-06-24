@@ -43,7 +43,7 @@
     companyName: (string)
     productTitle: (string)
     description: (string)
-    price: (number)
+    pricePerDay: (number)
     address: (string)
     state: (string)
     isAvailable: {
