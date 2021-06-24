@@ -22,7 +22,7 @@ const productSchema = new schema({
         type: String,
         require: true
     },
-    price: {
+    pricePerDay: {
         type: Number,
         require: true
     },
