@@ -1,8 +1,10 @@
+const cors = require("cors")
 const express = require("express")
 const bodyParser = require("body-parser")
 const { connection } = require("./db/connection")
+
 const user = require("./routes/user")
-const cors = require("cors")
+const product = require("./routes/product")
 
 const app = express()
 
@@ -15,5 +17,6 @@ app.get("/", async (req, res) => {
 })
 
 app.use("/user", user)
+app.use("/product", product)
 
 module.exports = { app }
