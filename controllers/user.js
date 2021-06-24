@@ -9,7 +9,9 @@ exports.profile = promise(async (req, res) => {
     res.status(200).json({
         _id: user._id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        number: user.number,
+        address: user.address + ", " + user.state
     })
 })
 

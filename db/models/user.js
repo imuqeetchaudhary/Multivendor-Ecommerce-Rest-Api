@@ -17,6 +17,22 @@ const userSchema = new schema({
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    number: {
+        type: Number,
+        required: true
+    },
+    address: {
+        type: String,
+        require: true
+    },
+    state: {
+        type: String,
+        require: true
+    },
+    balance: {
+        type: Number,
+        default: 0
     }
 })
 
