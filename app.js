@@ -5,6 +5,7 @@ const { connection } = require("./db/connection")
 
 const user = require("./routes/user")
 const product = require("./routes/product")
+const rentalHistory = require("./routes/rentalHistory")
 
 const app = express()
 
@@ -18,5 +19,6 @@ app.get("/", async (req, res) => {
 
 app.use("/user", user)
 app.use("/product", product)
+app.use("/rental-history", rentalHistory)
 
 module.exports = { app }
