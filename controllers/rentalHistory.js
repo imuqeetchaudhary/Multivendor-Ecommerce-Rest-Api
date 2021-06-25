@@ -32,12 +32,21 @@ exports.addRental = promise(async (req, res) => {
     const product = await Product.findOne({ _id: body.productId })
     if (!product) throw new Exceptions.NotFound()
 
+    const renterId = req.user._id
+    const vendorId = product.userId
+    const adminId = "60d43d0a55f5ef31b458fb4b"
+
+    // to find admin to update his commision later
+    const admin = await User.findOne({_id: adminId})
+    if (!admin) throw new Exceptions.NotFound()
+    console.log(admin);
+
     // to find renter balance to check either balance is > than product price or not
-    const renter = await User.findOne({ _id: body.renterId })
+    const renter = await User.findOne({ _id: renterId })
     if (!renter) throw new Exceptions.NotFound()
 
     // to find vendor to update his balance
-    const vendor = await User.findOne({ _id: body.vendorId })
+    const vendor = await User.findOne({ _id: vendorId })
     if (!vendor) throw new Exceptions.NotFound()
 
     const totalPrice = body.totalDays * product.pricePerDay
@@ -47,11 +56,13 @@ exports.addRental = promise(async (req, res) => {
 
             const newRental = new RentalHistory({
                 ...req.body,
+                renterId: renterId,
+                vendorId: vendorId,
                 totalPrice: totalPrice
             })
 
             const updateRenter = await User.updateOne(
-                { _id: body.renterId },
+                { _id: renterId },
                 {
                     $set: {
                         balance: renter.balance - totalPrice
@@ -60,7 +71,7 @@ exports.addRental = promise(async (req, res) => {
             console.log("Successfully updated rentar balance");
 
             const updateVendor = await User.updateOne(
-                { _id: body.vendorId },
+                { _id: vendorId },
                 {
                     $set: {
                         balance: vendor.balance + totalPrice
