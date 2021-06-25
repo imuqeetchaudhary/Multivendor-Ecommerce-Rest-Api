@@ -26,9 +26,10 @@ const upload = multer({
     }
 })
 
-router.post("/get-single", authentication, validation(getProductSchema), product.getProduct)
-router.get("/admin-get-all", authentication, product.getAllProductForAdmin)
 router.get("/user-get-all", authentication, product.getAllProductForUser)
+router.get("/admin-get-all", authentication, product.getAllProductForAdmin)
 router.post("/add", authentication, upload.single("image"), product.addProduct)
+router.post("/update", authentication, validation(getProductSchema), product.updateProduct)
+router.post("/get-single", authentication, validation(getProductSchema), product.getProduct)
 
 module.exports = router

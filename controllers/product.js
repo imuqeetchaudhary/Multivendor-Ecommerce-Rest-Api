@@ -3,7 +3,7 @@ const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
 
 exports.getProduct = promise(async (req, res) => {
-    const product = await Product.findOne({_id: req.body.productId})
+    const product = await Product.findOne({ _id: req.body.productId })
     if (!product) throw new Exceptions.NotFound
 
     res.status(200).json({ product })
@@ -17,7 +17,7 @@ exports.getAllProductForAdmin = promise(async (req, res) => {
 })
 
 exports.getAllProductForUser = promise(async (req, res) => {
-    const product = await Product.find({userId: req.user._id})
+    const product = await Product.find({ userId: req.user._id })
     if (!product) throw new Exceptions.NotFound
 
     res.status(200).json({ product })
@@ -33,4 +33,22 @@ exports.addProduct = promise(async (req, res) => {
     })
     await newProduct.save()
     res.status(200).json({ message: "Successfully added new product" })
+})
+
+exports.updateProduct = promise(async (req, res) => {
+    const body = req.body
+    const updatedProduct = await Product.updateOne(
+        {
+            _id: body.productId,
+            userId: req.user._id
+        },
+        {
+            $set: {
+                ...body
+            }
+        }
+    )
+    res.status(200).json({
+        message: "Successfully updated product",
+    })
 })
