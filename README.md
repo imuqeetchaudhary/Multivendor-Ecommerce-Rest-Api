@@ -84,8 +84,6 @@ https://multivendor-ecommerce-restapi.herokuapp.com/
 
 ```
 {
-    renterId:
-    vendorId:
     productId:
     totalDays:
     rentingDate: formate ( yyyy-mm-dd )
