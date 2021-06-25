@@ -68,6 +68,16 @@ https://multivendor-ecommerce-restapi.herokuapp.com/
 }
 ```
 
+### to update a product
+
+- product/update :post
+
+```
+{
+    productId:
+}
+```
+
 ### to get all products for admin
 
 - product/admin-get-all :get
