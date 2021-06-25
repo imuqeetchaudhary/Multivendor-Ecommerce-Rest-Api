@@ -71,3 +71,32 @@
 ### to get all products for user based on userId
 
 - product/user-get-all :get
+
+## Routes for rental history and to rent a product
+
+### to rent a product
+
+- rental-history/add :post
+
+```
+{
+    renterId:
+    vendorId:
+    productId:
+    totalDays:
+    rentingDate: formate ( yyyy-mm-dd )
+    returningDate: formate ( yyyy-mm-dd )
+}
+```
+
+### to check all rentel histories by admin
+
+- rental-history/admin-get :get
+
+### to check all of his rentel histories of vendor by the vendor
+
+- rental-history/vendor-get :get
+
+### to check all of his rentel histories of renter by the renter
+
+- rental-history/renter-get :get
