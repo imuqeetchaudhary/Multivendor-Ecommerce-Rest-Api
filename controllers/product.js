@@ -39,8 +39,7 @@ exports.updateProduct = promise(async (req, res) => {
     const body = req.body
     const updatedProduct = await Product.updateOne(
         {
-            _id: body.productId,
-            userId: req.user._id
+            _id: body.productId
         },
         {
             $set: {
