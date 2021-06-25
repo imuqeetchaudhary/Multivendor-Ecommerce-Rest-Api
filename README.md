@@ -1,6 +1,6 @@
 # Multivendor E-commerce Rest Api
 
-## Rest Api deployement link
+## Rest Api deployment link
 
 https://multivendor-ecommerce-restapi.herokuapp.com/
 
