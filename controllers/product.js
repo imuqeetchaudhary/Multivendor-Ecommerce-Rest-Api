@@ -1,9 +1,32 @@
 const { Product } = require("../db/models/product")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
+const _ = require("lodash")
 
 exports.getProduct = promise(async (req, res) => {
     const product = await Product.findOne({ _id: req.body.productId })
+    if (!product) throw new Exceptions.NotFound
+
+    res.status(200).json({ product })
+})
+
+exports.searchProduct = promise(async (req, res) => {
+    const body = req.body
+
+    const startingDate = body.startingDate + 'T23:59:59'
+    const endingDate = body.endingDate + 'T23:59:59'
+
+    const product = await Product.find({
+        $or: [
+            { companyName: _.capitalize(body.companyName) },
+            { address: _.capitalize(body.address) },
+            { state: _.capitalize(body.state) },
+            { pricePerDay: { $gte: body.minimumPrice } },
+            { pricePerDay: { $lt: body.maximumPrice } },
+            { availableDate: { $gte: startingDate } },
+            { availableDate: { $lt: endingDate } }
+        ]
+    })
     if (!product) throw new Exceptions.NotFound
 
     res.status(200).json({ product })

@@ -26,6 +26,7 @@ const upload = multer({
     }
 })
 
+router.post("/search", product.searchProduct)
 router.get("/user-get-all", authentication, product.getAllProductForUser)
 router.get("/admin-get-all", authentication, product.getAllProductForAdmin)
 router.post("/add", authentication, upload.single("image"), product.addProduct)
