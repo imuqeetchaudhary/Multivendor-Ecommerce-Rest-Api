@@ -28,6 +28,11 @@ exports.getRentalHistoryForAdmin = promise(async (req, res) => {
 exports.addRental = promise(async (req, res) => {
     const body = req.body
 
+    function adminCommision(total) {
+        let ammount = ((10 / 100) * total)
+        return ammount
+    }
+
     // to find product to be rented
     const product = await Product.findOne({ _id: body.productId })
     if (!product) throw new Exceptions.NotFound()
@@ -37,9 +42,8 @@ exports.addRental = promise(async (req, res) => {
     const adminId = "60d43d0a55f5ef31b458fb4b"
 
     // to find admin to update his commision later
-    const admin = await User.findOne({_id: adminId})
+    const admin = await User.findOne({ _id: adminId })
     if (!admin) throw new Exceptions.NotFound()
-    console.log(admin);
 
     // to find renter balance to check either balance is > than product price or not
     const renter = await User.findOne({ _id: renterId })
@@ -50,6 +54,8 @@ exports.addRental = promise(async (req, res) => {
     if (!vendor) throw new Exceptions.NotFound()
 
     const totalPrice = body.totalDays * product.pricePerDay
+
+    const adminNewBalance = (2 * adminCommision(totalPrice))
 
     if (product.isAvailable == true) {
         if (renter.balance > totalPrice) {
@@ -65,7 +71,7 @@ exports.addRental = promise(async (req, res) => {
                 { _id: renterId },
                 {
                     $set: {
-                        balance: renter.balance - totalPrice
+                        balance: (renter.balance - totalPrice) - adminCommision(totalPrice)
                     }
                 })
             console.log("Successfully updated rentar balance");
@@ -74,10 +80,19 @@ exports.addRental = promise(async (req, res) => {
                 { _id: vendorId },
                 {
                     $set: {
-                        balance: vendor.balance + totalPrice
+                        balance: (vendor.balance + totalPrice) - adminCommision(totalPrice)
                     }
                 })
             console.log("Successfully updated vendor balance");
+
+            const updateAdmin = await User.updateOne(
+                { _id: adminId },
+                {
+                    $set: {
+                        balance: admin.balance + adminNewBalance
+                    }
+                })
+            console.log("Successfully updated admin balance");
 
             const updateProduct = await Product.updateOne(
                 { _id: body.productId },
