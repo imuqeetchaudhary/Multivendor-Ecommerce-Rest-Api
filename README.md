@@ -1,5 +1,9 @@
 # Multivendor E-commerce Rest Api
 
+## Rest Api deployement link
+
+https://multivendor-ecommerce-restapi.herokuapp.com/
+
 ## Routes for User
 
 ### to register a new user
