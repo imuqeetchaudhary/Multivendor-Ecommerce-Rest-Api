@@ -128,3 +128,27 @@ https://multivendor-ecommerce-restapi.herokuapp.com/
 ### to check all of his rentel histories of renter by the renter
 
 - rental-history/renter-get :get
+
+## ROutes for Product Reviews
+
+### to add a product review
+
+- product-review/add :post
+
+```
+{
+    productId:
+    rating:
+    review:
+}
+```
+
+### to get a product review
+
+- product-review/get :post
+
+```
+{
+    productId:
+}
+```
