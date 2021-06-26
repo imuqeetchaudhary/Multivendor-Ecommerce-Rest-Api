@@ -5,12 +5,13 @@ const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
 
 exports.profile = promise(async (req, res) => {
-    const user = await User.findOne({ email: req.user.email })
+    const user = await User.findOne({ _id: req.user._id })
     res.status(200).json({
         _id: user._id,
         name: user.name,
         email: user.email,
         number: user.number,
+        balance: user.balance,
         address: user.address + ", " + user.state
     })
 })
