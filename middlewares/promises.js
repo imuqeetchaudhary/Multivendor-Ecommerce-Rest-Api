@@ -20,7 +20,7 @@ exports.promise = (handler) => {
                 name = err.name;
             }
 
-            res.status(statusCode).send({ message, name });
+            res.status(statusCode).send({ message, error: err.message });
         }
     };
 };
