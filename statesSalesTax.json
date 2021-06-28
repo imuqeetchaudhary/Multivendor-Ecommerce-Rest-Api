@@ -1,0 +1,211 @@
+{
+    "statesSalesTax": [{
+            "state": "alabama",
+            "tax": 4
+        },
+        {
+            "state": "alaska",
+            "tax": 0
+        },
+        {
+            "state": "arizona",
+            "tax": 5.6
+        },
+        {
+            "state": "arkansas",
+            "tax": 6.5
+        },
+        {
+            "state": "california",
+            "tax": 7.25
+        },
+        {
+            "state": "colrado",
+            "tax": 2.9
+        },
+        {
+            "state": "connecticut",
+            "tax": 6.35
+        },
+        {
+            "state": "delaware",
+            "tax": 0
+        },
+        {
+            "state": "district of columbia",
+            "tax": 6
+        },
+        {
+            "state": "florida",
+            "tax": 6
+        },
+        {
+            "state": "georgia",
+            "tax": 4
+        },
+        {
+            "state": "hawaii",
+            "tax": 4
+        },
+        {
+            "state": "idaho",
+            "tax": 6
+        },
+        {
+            "state": "illinois",
+            "tax": 6.25
+        },
+        {
+            "state": "indiana",
+            "tax": 7
+        },
+        {
+            "state": "iowa",
+            "tax": 6
+        },
+        {
+            "state": "kansas",
+            "tax": 6.5
+        },
+        {
+            "state": "kentucky",
+            "tax": 6
+        },
+        {
+            "state": "louisiana",
+            "tax": 4.45
+        },
+        {
+            "state": "maine",
+            "tax": 5.5
+        },
+        {
+            "state": "maryland",
+            "tax": 6
+        },
+        {
+            "state": "massachusetts",
+            "tax": 6.25
+        },
+        {
+            "state": "michigan",
+            "tax": 6
+        },
+        {
+            "state": "minnesota",
+            "tax": 6.875
+        },
+        {
+            "state": "mississippi",
+            "tax": 7
+        },
+        {
+            "state": "missouri",
+            "tax": 7
+        },
+        {
+            "state": "montana",
+            "tax": 0
+        },
+        {
+            "state": "nebraska",
+            "tax": 5.5
+        },
+        {
+            "state": "nevada",
+            "tax": 6.85
+        },
+        {
+            "state": "new hampshire",
+            "tax": 0
+        },
+        {
+            "state": "new jersey",
+            "tax": 6.625
+        },
+        {
+            "state": "new mexico",
+            "tax": 5.125
+        },
+        {
+            "state": "new york",
+            "tax": 4
+        },
+        {
+            "state": "north carolina",
+            "tax": 4.75
+        },
+        {
+            "state": "north dakota",
+            "tax": 5
+        },
+        {
+            "state": "ohio",
+            "tax": 5.75
+        },
+        {
+            "state": "oklahoma",
+            "tax": 4.5
+        },
+        {
+            "state": "oregon",
+            "tax": 0
+        },
+        {
+            "state": "pennsylvania",
+            "tax": 6
+        },
+        {
+            "state": "puerto rico",
+            "tax": 11.5
+        },
+        {
+            "state": "rhode island",
+            "tax": 7
+        },
+        {
+            "state": "south carolina",
+            "tax": 6
+        },
+        {
+            "state": "south dakota",
+            "tax": 4.5
+        },
+        {
+            "state": "tennessee",
+            "tax": 7
+        },
+        {
+            "state": "texas",
+            "tax": 6.25
+        },
+        {
+            "state": "utah",
+            "tax": 4.85
+        },
+        {
+            "state": "vermont",
+            "tax": 6
+        },
+        {
+            "state": "virginia",
+            "tax": 4.3
+        },
+        {
+            "state": "washington",
+            "tax": 6.5
+        },
+        {
+            "state": "west virginia",
+            "tax": 6
+        },
+        {
+            "state": "wisconsin",
+            "tax": 5
+        },
+        {
+            "state": "wyoming",
+            "tax": 4
+        }
+    ]
+}
