@@ -5,5 +5,6 @@ exports.addRentalSchema = yup.object({
     totalDays: yup.number().required(),
     rentingDate: yup.date().required(),
     returningDate: yup.date().required(),
-    shippingState: yup.string().required()
+    shippingState: yup.string().required(),
+    shippingAddress: yup.string().required()
 })
