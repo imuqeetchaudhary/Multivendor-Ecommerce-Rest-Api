@@ -3,6 +3,7 @@ const { Product } = require("../db/models/product")
 const { User } = require("../db/models/user")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
+const { sendMail } = require("../middlewares/sendmail")
 const fs = require("fs")
 const path = require('path');
 
@@ -72,6 +73,8 @@ exports.addRental = promise(async (req, res) => {
     if (!vendor) throw new Exceptions.NotFound()
 
     const totalPrice = body.totalDays * product.pricePerDay
+    const address = `The product's shipping address for ${renter.name} is ${body.shippingAddress }, ${body.shippingState}. The number of renter is ${renter.number}`
+    console.log(address);
 
     const adminNewBalance = (2 * adminCommision(totalPrice))
 
@@ -124,6 +127,7 @@ exports.addRental = promise(async (req, res) => {
             console.log("Successfully updated product available dates");
 
             await newRental.save()
+            await sendMail(vendor.email, address)
             res.status(200).json({ message: "Successfully rented product" })
         }
         else {
