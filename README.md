@@ -114,6 +114,8 @@ https://multivendor-ecommerce-restapi.herokuapp.com/
     totalDays:
     rentingDate: formate ( yyyy-mm-dd )
     returningDate: formate ( yyyy-mm-dd )
+    shippingAddress:
+    shippingState:
 }
 ```
 
