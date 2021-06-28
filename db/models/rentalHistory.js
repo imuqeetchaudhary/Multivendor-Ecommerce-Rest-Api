@@ -14,6 +14,10 @@ const rentalHistorySchema = new schema({
         type: schema.Types.ObjectId,
         ref: "Product"
     },
+    shippingState: {
+        type: String,
+        require: true
+    },
     rentingDate: {
         type: Date,
         require: true

@@ -3,6 +3,8 @@ const { Product } = require("../db/models/product")
 const { User } = require("../db/models/user")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
+const fs = require("fs")
+const path = require('path');
 
 exports.getRentalHistoryForVendor = promise(async (req, res) => {
     const rentalHistory = await RentalHistory.find({ vendorId: req.user._id })
@@ -28,8 +30,25 @@ exports.getRentalHistoryForAdmin = promise(async (req, res) => {
 exports.addRental = promise(async (req, res) => {
     const body = req.body
 
+    function statesSalesTax() {
+        const state = (body.shippingState).toLowerCase()
+        let tax = fs.readFileSync(path.resolve("statesSalesTax.json"));
+        let taxArray = JSON.parse(tax);
+        const statesSalesTax = taxArray.statesSalesTax.find((tax) => {
+            return tax.state == state
+        })
+        stateTax = statesSalesTax.tax
+        console.log(stateTax)
+        return stateTax
+    }
+
     function adminCommision(total) {
         let ammount = ((10 / 100) * total)
+        return ammount
+    }
+
+    function salesTax(total) {
+        let ammount = ((statesSalesTax() / 100) * total)
         return ammount
     }
 
@@ -71,7 +90,7 @@ exports.addRental = promise(async (req, res) => {
                 { _id: renterId },
                 {
                     $set: {
-                        balance: (renter.balance - totalPrice) - adminCommision(totalPrice)
+                        balance: (renter.balance - totalPrice) - adminCommision(totalPrice) - salesTax(totalPrice)
                     }
                 })
             console.log("Successfully updated rentar balance");
@@ -80,7 +99,7 @@ exports.addRental = promise(async (req, res) => {
                 { _id: vendorId },
                 {
                     $set: {
-                        balance: (vendor.balance + totalPrice) - adminCommision(totalPrice)
+                        balance: (vendor.balance + totalPrice) - adminCommision(totalPrice) + salesTax(totalPrice)
                     }
                 })
             console.log("Successfully updated vendor balance");
@@ -115,5 +134,6 @@ exports.addRental = promise(async (req, res) => {
     else {
         throw new Exceptions.BadRequset("Product is not available for rent")
     }
+
 
 })
