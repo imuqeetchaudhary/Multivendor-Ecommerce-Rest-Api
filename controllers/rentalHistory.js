@@ -38,7 +38,6 @@ exports.addRental = promise(async (req, res) => {
             return tax.state == state
         })
         stateTax = statesSalesTax.tax
-        console.log(stateTax)
         return stateTax
     }
 
