@@ -3,10 +3,10 @@ const { Product } = require("../db/models/product")
 const { User } = require("../db/models/user")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
-const { sendMail } = require("../middlewares/sendmail")
+const { sendMail } = require("../middlewares/sendMail")
 const fs = require("fs")
 const path = require('path');
-// const stripe = require('stripe')('sk_test_51J1POvClkiKKoyU1EwrqRkPchsMA2eXdwSeI7VCQiqCOzOVwqOWoWGS8qCEj1fVQA7WCx1nnoeJD3KfPJHEE0XOG00uMs4G6yS');
+const stripe = require('stripe')('sk_test_51J1POvClkiKKoyU1EwrqRkPchsMA2eXdwSeI7VCQiqCOzOVwqOWoWGS8qCEj1fVQA7WCx1nnoeJD3KfPJHEE0XOG00uMs4G6yS');
 
 exports.getRentalHistoryForVendor = promise(async (req, res) => {
     const rentalHistory = await RentalHistory.find({ vendorId: req.user._id })
@@ -97,16 +97,16 @@ exports.addRental = promise(async (req, res) => {
         //     })
         // console.log("Successfully updated rentar balance");
 
-        // const paymentIntent = await stripe.paymentIntents.create({
-        //     amount: (totalPrice + adminCommision(totalPrice) + salesTax(totalPrice)) * 100,
-        //     currency: 'usd',
-        //     metadata: { integration_check: 'accept_a_payment' },
-        //     receipt_email: renter.email,
-        //     payment_method_types: ['card'],
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: (totalPrice + adminCommision(totalPrice) + salesTax(totalPrice)) * 100,
+            currency: 'usd',
+            metadata: { integration_check: 'accept_a_payment' },
+            receipt_email: renter.email,
+            payment_method_types: ['card'],
 
-        // });
+        });
 
-        // res.json({ 'client_secret': paymentIntent['client_secret'] })
+        res.json({ 'client_secret': paymentIntent['client_secret'] })
 
         const updateVendor = await User.updateOne(
             { _id: vendorId },
