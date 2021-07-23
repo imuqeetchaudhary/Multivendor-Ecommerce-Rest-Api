@@ -30,6 +30,8 @@ async function addHistory(roomId, messageDetail) {
     $push: { chat: messageDetail },
   });
 
+  console.log(existingRoom);
+
   return roomSerializer(existingRoom._doc);
 }
 
