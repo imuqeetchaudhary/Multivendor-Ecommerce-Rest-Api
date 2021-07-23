@@ -38,9 +38,11 @@
       //   }
       // );
 
-      socket.emit("all-rooms", (data) => {
-        console.log("all rooms", data);
-      });
+      // socket.emit("all-rooms", (data) => {
+      //   console.log("all rooms", data);
+      // });
+
+      socket.emit("join-room", "60fa7b24ac584e29e1f44bd9");
     </script>
   </body>
 </html>
