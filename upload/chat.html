@@ -30,13 +30,17 @@
         console.log(data);
       });
 
-      socket.emit(
-        "create-room",
-        { user: "60fa7a1802fc3f2881461d0a" },
-        (data) => {
-          console.log(data);
-        }
-      );
+      // socket.emit(
+      //   "create-room",
+      //   { user: "60fa7a1802fc3f2881461d0a" },
+      //   (data) => {
+      //     console.log(data);
+      //   }
+      // );
+
+      socket.emit("all-rooms", (data) => {
+        console.log("all rooms", data);
+      });
     </script>
   </body>
 </html>
