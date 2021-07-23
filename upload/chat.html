@@ -13,8 +13,13 @@
     <script>
       var socket = io("/", {
         auth: {
-          username: "Noor",
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZhNzEwZDA0ZTliOTIwZjdjNDYzMzEiLCJuYW1lIjoiVXNlcjEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjcwMjU3NDd9.N3gPbXfv1cOWQJrtB1Svyc8XxrjgfAaTZUgWxRjJn5M",
         },
+      });
+
+      socket.on("connect_error", (err) => {
+        console.log("Connection error", err);
       });
 
       socket.on("exception", (err) => {
