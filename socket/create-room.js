@@ -1,8 +1,8 @@
 module.exports = (createRoom) => {
   return (socket) => {
     return async (arg, cb) => {
-      const username = socket.handshake.auth.username;
-      const opposedUsername = arg.username;
+      const username = socket.request.user._id;
+      const opposedUsername = arg.user;
 
       try {
         const newRoom = await createRoom(username, opposedUsername);

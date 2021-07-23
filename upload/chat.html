@@ -14,7 +14,7 @@
       var socket = io("/", {
         auth: {
           token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZhNzEwZDA0ZTliOTIwZjdjNDYzMzEiLCJuYW1lIjoiVXNlcjEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjcwMjU3NDd9.N3gPbXfv1cOWQJrtB1Svyc8XxrjgfAaTZUgWxRjJn5M",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZhN2ExMzAyZmMzZjI4ODE0NjFkMDciLCJuYW1lIjoiVXNlcjEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjcwMjc5OTd9.qbMPkLkt7kGB7AqNiZkWOozr2NWyWhaSEp5VNZTubBI",
         },
       });
 
@@ -29,6 +29,14 @@
       socket.on("msg-from-server", (data) => {
         console.log(data);
       });
+
+      socket.emit(
+        "create-room",
+        { user: "60fa7a1802fc3f2881461d0a" },
+        (data) => {
+          console.log(data);
+        }
+      );
     </script>
   </body>
 </html>
