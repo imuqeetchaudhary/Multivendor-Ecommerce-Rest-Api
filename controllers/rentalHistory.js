@@ -106,7 +106,11 @@ exports.addRental = promise(async (req, res) => {
 
         });
 
-        res.json({ 'client_secret': paymentIntent['client_secret'] })
+        res.json({
+            productName: product.productTitle,
+            productDescription: product.description,
+            vendorName: vendor.name,
+            'client_secret': paymentIntent['client_secret'] })
 
         const updateVendor = await User.updateOne(
             { _id: vendorId },
