@@ -154,3 +154,19 @@ https://multivendor-ecommerce-restapi.herokuapp.com/
     productId:
 }
 ```
+
+## Web Socket Documentation
+
+### Listeners on Server
+
+- "create-room"
+- "all-rooms"
+- "join-room"
+- "message-from-client"
+
+### Fire Events From Server
+
+- "exception"
+- "chat-history"
+- "join-room-error"
+- "message-from-server"
