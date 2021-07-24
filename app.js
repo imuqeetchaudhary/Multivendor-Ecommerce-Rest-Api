@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use(express.static(__dirname + "/upload/images"))
+
 app.get("/", async (req, res) => {
   res.json({ message: "Multivendor E-commerce Rest Api" });
 });
