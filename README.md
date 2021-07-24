@@ -159,7 +159,8 @@ https://multivendor-ecommerce-restapi.herokuapp.com/
 
 ### Listeners on Server
 
-- "create-room"
+- "create-room" : this will create a room. You have to pass object having user key to which we can chat it can be anyone like admin, vendor etc. You just have to pass that user id in object having user key in it.
+
 - "all-rooms"
 - "join-room"
 - "message-from-client"

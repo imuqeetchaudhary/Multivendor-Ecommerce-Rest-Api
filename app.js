@@ -1,13 +1,14 @@
 const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
-const { connection } = require("./db/connection");
+const dbConnect = require("./db/connection");
 
 const user = require("./routes/user");
 const product = require("./routes/product");
 const rentalHistory = require("./routes/rentalHistory");
 const productReview = require("./routes/productReview");
 
+dbConnect();
 const app = express();
 
 app.use(express.static(__dirname + "/upload"));
@@ -15,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use(express.static(__dirname + "/upload/images"))
+app.use(express.static(__dirname + "/upload/images"));
 
 app.get("/", async (req, res) => {
   res.json({ message: "Multivendor E-commerce Rest Api" });
