@@ -157,7 +157,7 @@ https://multivendor-ecommerce-restapi.herokuapp.com/
 
 ## Web Socket Documentation
 
-### Listeners on Server
+### Fire Events from Client
 
 - "create-room" : this will create a room. You have to pass object having user key to which we can chat it can be anyone like admin, vendor etc. You just have to pass that user id in object having user key in it. This is how you can do it on the client side ...
 
@@ -179,7 +179,20 @@ socket.emit("all-rooms", (allRooms) => {
 });
 ```
 
-- "join-room"
+- "join-room" : this will join room to chat with someone. And we have to pass the room id. And to get the room id you have all the rooms for that logged in user by firing an event "all-rooms". For example: you are a normal user and you want to chat with vendor. For that simply get the room id in which you as normal user and that vendor will exist. And that room id we have to pass to join the room as simple as that. And when you will join the room it will fire event from the server and you should listen for that i.e. "chat-history" that will fire when you join the room it will return all the chat history for that room means all chat history you as logged in user and other user have. And second event will fire i.e. "join-room-error" if you pass invalid room id then this event will fire from server. This is how you can do it on the client side ...
+
+```js
+socket.emit("join-room", "60fa7b24ac584e29e1f44bd9");
+
+socket.on("chat-history", (chatHistory) => {
+  console.log("chat history", chatHistory);
+});
+
+socket.on("join-room-error", (roomErr) => {
+  console.log("join room error", roomErr);
+});
+```
+
 - "message-from-client"
 
 ### Fire Events From Server
