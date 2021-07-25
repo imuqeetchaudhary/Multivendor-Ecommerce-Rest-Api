@@ -171,7 +171,14 @@ socket.emit(
 );
 ```
 
-- "all-rooms"
+- "all-rooms" : this will return all rooms for that logged in user. Room means all chat that logged in user involved. And you don't have to pass anything. This is how you can do it on the client side ...
+
+```js
+socket.emit("all-rooms", (allRooms) => {
+  console.log("all rooms", allRooms);
+});
+```
+
 - "join-room"
 - "message-from-client"
 
