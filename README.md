@@ -157,6 +157,20 @@ https://multivendor-ecommerce-restapi.herokuapp.com/
 
 ## Web Socket Documentation
 
+### General Docs
+
+- web socket is auth protected means you have to pass the token to access that. And you will get the token when you logged in. And if you don't pass the token the server will fire an event i.e. "connect_error" and you must have to listen for that in order to receive connection error messages. This is how you can do it on the client side ...
+
+```js
+const APP_URL = "http://localhost:8000"; // or whatever the base URL
+const socket = io(APP_URL, {
+  auth: {
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZhN2ExMzAyZmMzZjI4ODE0NjFkMDciLCJuYW1lIjoiVXNlcjEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjcwMjc5OTd9.qbMPkLkt7kGB7AqNiZkWOozr2NWyWhaSEp5VNZTubBI",
+  }, // replace your token this is just for demo. By the way token is passed dynamically most probably you store token in localstorage or some other in memory db just replace this hard coded string with that token ...
+});
+```
+
 ### Fire Events from Client
 
 - "create-room" : this will create a room. You have to pass object having user key to which we can chat it can be anyone like admin, vendor etc. You just have to pass that user id in object having user key in it. This is how you can do it on the client side ...
