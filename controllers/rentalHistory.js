@@ -59,7 +59,7 @@ exports.addRental = promise(async (req, res) => {
 
     const renterId = req.user._id
     const vendorId = product.userId
-    const adminId = "60d43d0a55f5ef31b458fb4b"
+    const adminId = "60fc49e7a1718f0004433385"
 
     // to find admin to update his commision later
     const admin = await User.findOne({ _id: adminId })
@@ -101,8 +101,7 @@ exports.addRental = promise(async (req, res) => {
             amount: (totalPrice + adminCommision(totalPrice) + salesTax(totalPrice)) * 100,
             currency: 'usd',
             metadata: { integration_check: 'accept_a_payment' },
-            receipt_email: renter.email,
-            payment_method_types: ['card'],
+            receipt_email: renter.email
 
         });
 
