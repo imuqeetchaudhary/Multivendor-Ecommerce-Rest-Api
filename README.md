@@ -209,10 +209,13 @@ socket.on("join-room-error", (roomErr) => {
 });
 ```
 
-- **"message-from-client"** : this will emit message from the client means when you create a message on the client side simply use that action. And you just have to pass message string to that action. The server will listen for that action and it will fire an event i.e. **"message-from-server"** and you must have to listen for that event to receive new messages. It will contain three things message, time, user. This is how you can do it on the client side ...
+- **"message-from-client"** : this will emit message from the client means when you create a message on the client side simply use that action. And you just have to pass message string and roomId to that action. The server will listen for that action and it will fire an event i.e. **"message-from-server"** and you must have to listen for that event to receive new messages. It will contain three things message, time, user. This is how you can do it on the client side ...
 
 ```js
-socket.emit("message-from-client", "Hello from client");
+socket.emit("message-from-client", {
+  msg: "Hello from client",
+  roomId: "60fa7b24ac584e29e1f44bd9",
+});
 
 socket.on("message-from-server", (newMsg) => {
   console.log("new message from server", newMsg);
