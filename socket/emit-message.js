@@ -7,7 +7,12 @@ module.exports = (addHistory) => {
       console.log("user", socket.request.user._id);
       const message = getMessage(socket.request.user._id, msg);
 
-      await addHistory(roomId, { ...message });
+      console.log("room id", roomId);
+      console.log("connected clients: ", io.sockets.adapter.rooms[roomId]);
+      console.log(socket.rooms);
+      // console.log(io.sockets.in(roomId).connected);
+
+      // await addHistory(roomId, { ...message });
       io.to(roomId).emit("message-from-server", message);
     };
   };
