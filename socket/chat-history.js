@@ -4,12 +4,13 @@ module.exports = (getSingleRoom, getSingleUser) => {
       const room = await getSingleRoom(roomId);
 
       if (room) {
-        const opposedUser = await getSingleUser(room.opposedUser);
         const currentUser = socket.request.user;
+        const opposedUserID = getOpposedUserID(currentUser._id, room);
+        const opposedUser = await getSingleUser(opposedUserID);
 
         const chatObj = {
           [currentUser._id]: currentUser,
-          [room.opposedUser]: opposedUser,
+          [opposedUserID]: opposedUser,
           chat: room.chat,
         };
 
@@ -20,3 +21,11 @@ module.exports = (getSingleRoom, getSingleUser) => {
     };
   };
 };
+
+function getOpposedUserID(currentUserId, room) {
+  if (currentUserId === room.user) {
+    return room.opposedUser;
+  } else {
+    return room.user;
+  }
+}
