@@ -101,8 +101,7 @@ exports.addRental = promise(async (req, res) => {
             amount: (totalPrice + adminCommision(totalPrice) + salesTax(totalPrice)) * 100,
             currency: 'usd',
             metadata: { integration_check: 'accept_a_payment' },
-            receipt_email: renter.email,
-            payment_method_types: ['card'],
+            receipt_email: renter.email
 
         });
 
