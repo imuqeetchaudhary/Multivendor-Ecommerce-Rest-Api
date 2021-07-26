@@ -6,8 +6,10 @@ module.exports = (getSingleRoom, getSingleUser) => {
 
       if (room) {
         const opposedUser = await getSingleUser(room.opposedUser);
+        const currentUser = socket.request.user;
+
         const chatObj = {
-          [socket.request.user._id]: socket.request.user,
+          [currentUser._id]: currentUser,
           [room.opposedUser]: opposedUser,
           chat: room.chat,
         };
