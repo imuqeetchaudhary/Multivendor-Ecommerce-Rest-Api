@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const DEV_MONGO_URI = "mongodb://localhost:27017/ecommerece-app";
+const DEV_MONGO_URI = "mongodb://localhost:27017/Multivendor-Ecommerece";
 const PROD_MONGO_URI =
   "mongodb+srv://muqeet_chaudhary:Abdul6890060@cluster0.bqu75.mongodb.net/Multivendor-Ecommerece";
 
