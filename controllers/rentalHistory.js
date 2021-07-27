@@ -10,6 +10,7 @@ const stripe = require('stripe')('sk_test_51J1POvClkiKKoyU1EwrqRkPchsMA2eXdwSeI7
 
 exports.getRentalHistoryForVendor = promise(async (req, res) => {
     const rentalHistory = await RentalHistory.find({ vendorId: req.user._id })
+        .populate("renterId").populate("productId").populate("vendorId")
     if (!rentalHistory) throw new Exceptions.NotFound("No rental History Found")
 
     res.status(200).json({ rentalHistory })
@@ -17,6 +18,7 @@ exports.getRentalHistoryForVendor = promise(async (req, res) => {
 
 exports.getRentalHistoryForRenter = promise(async (req, res) => {
     const rentalHistory = await RentalHistory.find({ renterId: req.user._id })
+        .populate("renterId").populate("productId").populate("vendorId")
     if (!rentalHistory) throw new Exceptions.NotFound("No rental History Found")
 
     res.status(200).json({ rentalHistory })
@@ -98,7 +100,7 @@ exports.addRental = promise(async (req, res) => {
         // console.log("Successfully updated rentar balance");
 
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: (totalPrice + adminCommision(totalPrice) + salesTax(totalPrice)) * 100,
+            amount: Math.round((totalPrice + adminCommision(totalPrice) + salesTax(totalPrice)) * 100),
             currency: 'usd',
             metadata: { integration_check: 'accept_a_payment' },
             receipt_email: renter.email
