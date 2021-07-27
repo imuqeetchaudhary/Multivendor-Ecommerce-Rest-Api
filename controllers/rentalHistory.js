@@ -98,7 +98,7 @@ exports.addRental = promise(async (req, res) => {
         // console.log("Successfully updated rentar balance");
 
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: (totalPrice + adminCommision(totalPrice) + salesTax(totalPrice)) * 100,
+            amount: Math.round((totalPrice + adminCommision(totalPrice) + salesTax(totalPrice)) * 100),
             currency: 'usd',
             metadata: { integration_check: 'accept_a_payment' },
             receipt_email: renter.email
