@@ -44,11 +44,11 @@
 
       socket.emit("join-room", "60fa7b24ac584e29e1f44bd9");
 
-      // socket.emit("message-from-client", "Hello from client");
+      socket.emit("message-from-client", "Hello from client");
 
-      // socket.on("message-from-server", (data) => {
-      //   console.log("message from server", data);
-      // });
+      socket.on("message-from-server", (data) => {
+        console.log("message from server", data);
+      });
 
       socket.on("chat-history", (data) => {
         console.log("chat history", data);
