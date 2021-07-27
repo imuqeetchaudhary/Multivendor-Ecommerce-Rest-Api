@@ -23,7 +23,7 @@ module.exports = (getSingleRoom, getSingleUser) => {
 };
 
 function getOpposedUserID(currentUserId, room) {
-  if (currentUserId === room.user) {
+  if (currentUserId == room.user) {
     return room.opposedUser;
   } else {
     return room.user;
