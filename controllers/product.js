@@ -38,7 +38,7 @@ exports.getAllProductForAdmin = promise(async (req, res) => {
 })
 
 exports.getAllProductForUser = promise(async (req, res) => {
-    const product = await Product.find({ userId: req.user._id })
+    const product = await Product.find({ userId: req.user._id }).populate("userId")
     if (!product) throw new Exceptions.NotFound
 
     res.status(200).json({ product })
