@@ -25,7 +25,7 @@ exports.getRentalHistoryForRenter = promise(async (req, res) => {
 })
 
 exports.getRentalHistoryForAdmin = promise(async (req, res) => {
-    const rentalHistory = await RentalHistory.find()
+    const rentalHistory = await RentalHistory.find().populate("vendorId").populate("renterId")
     if (!rentalHistory) throw new Exceptions.NotFound("No rental History Found")
 
     res.status(200).json({ rentalHistory })
