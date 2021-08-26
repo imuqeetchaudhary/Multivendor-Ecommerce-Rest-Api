@@ -1,7 +1,7 @@
-const { User } = require("../db/models/user");
+// const { User } = require("../db/models/user");
 
-async function getSingleUser(id) {
-  return await User.findById(id).select("name email isAdmin");
-}
+// async function getSingleUser(id) {
+//   return await User.findById(id).select("name email isAdmin");
+// }
 
-module.exports = { getSingleUser };
+// module.exports = { getSingleUser };

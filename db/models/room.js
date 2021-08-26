@@ -1,22 +1,24 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
+const schema = mongoose.Schema
 
-const schema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
+const roomSchema = new schema({
+  userId: {
+    type: schema.Types.ObjectId,
     ref: "User",
   },
-  opposedUser: {
-    type: mongoose.Schema.Types.ObjectId,
+  opposedUserId: {
+    type: schema.Types.ObjectId,
     ref: "User",
   },
   chat: [
     {
-      time: String,
       message: String,
-      user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      userId: {
+        type: schema.Types.ObjectId,
+        ref: "User"
+      },
     },
-  ],
-});
+  ]
+})
 
-const Room = mongoose.model("Room", schema);
-module.exports = Room;
+exports.Room = mongoose.model("Room", roomSchema)

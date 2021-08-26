@@ -8,6 +8,84 @@
   </head>
 
   <body>
+    <h1>Chat Application Of MultiVendor Ecommerce</h1>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io("/", {
+        auth: {
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZjNDllN2ExNzE4ZjAwMDQ0MzMzODUiLCJuYW1lIjoiQWJkdWwgTXVxZWV0IiwiZW1haWwiOiJhYmR1bEBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2Mjk5NjUyOTZ9.KHAYpgyc7B1zxrLR9epP5-3XprJHJgYfwPiRjyd17g4",
+          // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFmNWRjOGQzNmI1MDEwMDhiYjU1ZWQiLCJuYW1lIjoiQWJkdWwgTXVxZWV0IEFyc2hhZCIsImVtYWlsIjoiYWJkdWxpc2Nvb29sQGdtYWlsLmNvbSIsInJvbGUiOiJwcm9mZXNzaW9uYWwiLCJpYXQiOjE2Mjk3OTcwOTF9.ArCiVZMUOJxd6wSnqEALk-ILj31fPSOO1CDRw7Ah9yA"
+        },
+      });
+
+      socket.on("hello-from-server", (data) => {
+        console.log(data);
+      });
+
+      socket.on("connect_error", (err) => {
+        console.log("Connection error", err);
+      });
+
+      socket.on("exception", (err) => {
+        console.log("Error from server:", err);
+      });
+
+      // socket.on("join-room-error", (err) => {
+      //   console.log("Join Room Error:", err);
+      // });
+
+      // socket.emit(
+      //   "create-room",
+      //   { userId: "60fc4a8da1718f0004433392" },
+      //   (data) => {
+      //     console.log(data);
+      //   }
+      // );
+
+      // socket.emit("all-rooms", (data) => {
+      //   console.log(data);
+      // });
+
+      // socket.emit(
+      //   "chat-history",
+      //   {
+      //     roomId: "61274c5589202817b88935f4",
+      //   },
+      //   (data) => {
+      //     console.log(data);
+      //   }
+      // );
+
+      // socket.emit(
+      //   "msg-from-client",
+      //   {
+      //     roomId: "61274c5589202817b88935f4",
+      //     message: "Message from client",
+      //   },
+      //   (data) => {
+      //     console.log(data);
+      //   }
+      // );
+
+      // socket.on("msg-from-server", (data) => {
+      //   console.log("Message:", data);
+      // });
+    </script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Application</title>
+  </head>
+
+  <body>
     <h1>Chat Application</h1>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -69,4 +147,4 @@
       });
     </script>
   </body>
-</html>
+</html> -->

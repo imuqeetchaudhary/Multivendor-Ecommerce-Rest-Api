@@ -1,10 +1,10 @@
-const { now } = require("moment");
-const moment = require("moment");
+// const { now } = require("moment");
+// const moment = require("moment");
 
-module.exports = (user, message) => {
-  return {
-    time: moment(now()).fromNow(),
-    user,
-    message,
-  };
-};
+// module.exports = (user, message) => {
+//   return {
+//     time: moment(now()).fromNow(),
+//     user,
+//     message,
+//   };
+// };
