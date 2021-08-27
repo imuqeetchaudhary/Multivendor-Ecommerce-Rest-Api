@@ -1,5 +1,4 @@
 const { Room } = require("../db/models/room")
-const { User } = require("../db/models/user")
 
 exports.createRoom = async (socket, data, cb) => {
     if (!socket.request.user._id) return socket.emit("exception", "Token required!");
