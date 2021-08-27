@@ -1,9 +1,6 @@
 const { app } = require("./app");
 const socketio = require("socket.io");
-
 const isAuthMiddleware = require("./middlewares/socketIsAuth");
-const { Room } = require("./db/models/room")
-const { User } = require("./db/models/user")
 
 const { allRooms } = require("./socket/allRooms")
 const { createRoom } = require("./socket/createRoom")
