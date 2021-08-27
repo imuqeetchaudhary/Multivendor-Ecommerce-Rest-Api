@@ -178,9 +178,15 @@ const socket = io(APP_URL, {
 - **"create-room"** : this will create a room. You have to pass object having user key to which we can chat it can be anyone like client or professional. You just have to pass that user id in object having user key in it. This is how you can do it on the client side.
 
 ```js
-socket.emit("create-room", { userId: "611f5dc8d36b501008bb55ed" }, (data) => {
-  console.log(data);
-});
+socket.emit(
+  "create-room",
+  {
+    opposedUserId: "611f5dc8d36b501008bb55ed",
+  },
+  (data) => {
+    console.log(data);
+  }
+);
 ```
 
 - **"all-rooms"** : this will return all rooms for that logged in user. Room means all chat that logged in user involved. And you don't have to pass anything. This is how you can do it on the client side.
