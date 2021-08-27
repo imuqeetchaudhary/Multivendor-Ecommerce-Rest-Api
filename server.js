@@ -45,8 +45,9 @@ io.on('connection', (socket) => {
     const userId = socket.request.user._id
     // console.log("UserId:", userId)
 
-    const rooms = await Room.find({ userId })
+    const rooms = await Room.find({ userId }).populate("userId").populate("opposedUserId")
     if (!rooms) return socket.emit("exception", "Room not found");
+    // console.log("All Rooms:", rooms)
 
     const allRooms = { allROoms: rooms }
     // console.log("All Rooms:", allRooms)
@@ -64,11 +65,11 @@ io.on('connection', (socket) => {
     if (!room) return socket.emit("exception", "Room not found");
 
     // console.log("UserId:", room.userId)
-    const user = await User.findById(room.userId).select("userName email")
+    const user = await User.findById(room.userId).select("name")
     // console.log("User", user)
 
     // console.log("OpposedUserId:", room.opposedUserId)
-    const opposedUser = await User.findById(room.opposedUserId).select("userName email")
+    const opposedUser = await User.findById(room.opposedUserId).select("name")
     // console.log("OpposedUser", opposedUser)
 
     const chatObj = {
@@ -122,7 +123,12 @@ io.on('connection', (socket) => {
 
     socket.join(roomId)
 
-    io.to(roomId).emit("msg-from-server", message)
+    const messageObj = {
+      userId: userId,
+      message: message
+    }
+
+    io.to(roomId).emit("msg-from-server", messageObj)
 
   })
 
