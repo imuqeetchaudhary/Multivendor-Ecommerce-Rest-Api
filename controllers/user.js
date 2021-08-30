@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
+const { sendMail } = require("../middlewares/sendMail")
 
 exports.profile = promise(async (req, res) => {
     const user = await User.findOne({ _id: req.user._id })
@@ -54,4 +55,22 @@ exports.login = promise(async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin
     })
+})
+
+exports.transferPayment = promise(async (req, res) => {
+    const body = req.body
+
+    const admin = await User.findOne({isAdmin: true})
+    if(!admin) throw new Exceptions.NotFound("Admin not found")
+
+    const user = await User.findById(req.user._id)
+    if (!user) throw new Exceptions.NotFound("User not found")
+
+    const balance = parseInt(user.balance)
+
+    const address = `Dear admin ${admin.name}! I ${user.name}, request you to transfer my payment of total $${balance} to my account number ${body.accountNumber} having account holder name ${body.accountHolderName}. Thanks!`
+
+    await sendMail(admin.email, address)
+
+    res.status(200).json({message: "Email sent successfully. Admin will get back you soon. Please wait."})
 })

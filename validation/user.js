@@ -13,3 +13,8 @@ exports.loginSchema = yup.object({
     email: yup.string().email().required(),
     password: yup.string().required()
 })
+
+exports.transferPaymentSchema = yup.object({
+    accountHolderName: yup.string().required(),
+    accountNumber: yup.string().required()
+})

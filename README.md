@@ -33,6 +33,17 @@ https://multivendor-ecommerce-restapi.herokuapp.com/
 
 - user/profile :post
 
+### to transfer payment
+
+- user/transfer-payment :post
+
+```
+{
+  accountHolderName:
+  accountNumber:
+}
+```
+
 ## Routes for products
 
 ### to add a new product
